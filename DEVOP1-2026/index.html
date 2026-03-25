@@ -4,9 +4,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Hello World</title>
+	<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-	<nav>
+<body class="bg-slate-50 text-slate-800">
+	<nav class="bg-white shadow-md">
+		<div class="mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between h-16 items-center">
+				<div class="flex items-center gap-6">
+					<a href="index.html" class="font-semibold text-slate-900 hover:text-indigo-600">Main</a>
+					<a href="dashboard.html" class="font-semibold text-slate-900 hover:text-indigo-600">Dashboard</a>
+					<a href="contact.html" class="font-semibold text-slate-900 hover:text-indigo-600">Contact</a>
+				</div>
+			</div>
+		</div>
+	</nav>
 		<ul>
 			<li><a href="index.html">Main</a></li>
 			<li><a href="dashboard.html">Dashboard</a></li>
@@ -14,10 +25,12 @@
 		</ul>
 	</nav>
 
-	<h1>Hello World</h1>
-	<table border="1" style="margin-top:20px;">
-		<thead>
-			<tr>
+	<main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+		<h1 class="text-4xl font-bold text-indigo-700 mb-6">Hello World</h1>
+		<div class="overflow-x-auto rounded-lg shadow border border-slate-200 bg-white">
+			<table class="min-w-full divide-y divide-slate-200">
+				<thead class="bg-slate-100">
+					<tr>
 				<th>UserID</th>
 				<th>Name</th>
 				<th>Email</th>
@@ -40,6 +53,8 @@
 				<td>charlie@example.com</td>
 			</tr>
 		</tbody>
-	</table>
-	<h2>Heading 2 is back</h2>
+		</table>
+		</div>
+		<h2 class="text-2xl mt-8 font-semibold text-slate-700">Heading 2 is back</h2>
+	</main>
 </body>
