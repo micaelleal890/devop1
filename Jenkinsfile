@@ -28,6 +28,16 @@ pipeline {
                 archiveArtifacts artifacts: 'app.tar.gz', fingerprint: true
             }
         }
+	stage('Deploy') {
+            environment {
+                API_KEY = credentials('my-api-key')
+            }
+            steps {
+                sh 'echo "Calling API with key length: ${#API_KEY}"'
+                sh 'apk add --no-cache curl >/dev/null 2>&1 || true'
+                sh 'curl -s -H "Authorization: Bearer $API_KEY" https://httpbin.org/headers'
+            }
+        }
     }
 
     post {
