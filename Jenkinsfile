@@ -1,0 +1,38 @@
+pipeline {
+    agent {
+        docker { image 'node:20-alpine' }
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Building ${env.BRANCH_NAME ?: 'local'} branch"
+            }
+        }
+
+        stage('Install') {
+            steps {
+                sh 'npm install || true'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'tar -czf app.tar.gz app.js package.json'
+                archiveArtifacts artifacts: 'app.tar.gz', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success { echo '✅ Pipeline succeeded' }
+        failure { echo '❌ Pipeline failed — check console output' }
+        always  { echo "Finished build #${env.BUILD_NUMBER}" }
+    }
+}
